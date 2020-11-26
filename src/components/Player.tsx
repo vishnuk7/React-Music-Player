@@ -1,11 +1,26 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef, useContext, useState } from 'react';
 import { FiPlay, FiSkipBack, FiSkipForward } from 'react-icons/fi';
 import { SongContext } from '../contexts/SongContext';
 import useToggle from '../hooks/useToggle';
 
+interface ISongInfo {
+	currentTime: number;
+	duration: number;
+}
+
 const Player: React.FC = () => {
 	const audioRef = useRef<HTMLAudioElement>(null);
 	const [isPlaying, toggle] = useToggle();
+	const [songInfo, setSongInfo] = useState<ISongInfo>({ currentTime: 0, duration: 0 });
+
+	const formatTime = (time: number): string => Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 10)).slice(-2);
+
+	const updateTimeHandler = (e: React.ChangeEvent<HTMLAudioElement>) => {
+		const duration = e.target.duration;
+		const currentTime = e.target.currentTime;
+		setSongInfo({ currentTime, duration });
+	};
+
 	const playerHanlder = () => {
 		if (audioRef.current !== null) {
 			if (isPlaying) {
@@ -22,15 +37,19 @@ const Player: React.FC = () => {
 	return (
 		<div className='player-container'>
 			<div className='time-control'>
-				<p>start time</p>
+				<p>{formatTime(songInfo.currentTime)}</p>
 				<input type='range' />
-				<p>End time</p>
+				<p>{formatTime(songInfo.duration)}</p>
 			</div>
 			<div className='play-control'>
 				<FiSkipBack size={'1.5rem'} className='skip-backward' />
 				<FiPlay onClick={playerHanlder} size={'1.5rem'} className='play' />
 				<FiSkipForward size={'1.5rem'} className='skip-forward' />
-				<audio ref={audioRef} src={currentSong.audio}></audio>
+				<audio
+					onLoadedMetadata={updateTimeHandler}
+					onTimeUpdate={updateTimeHandler}
+					ref={audioRef}
+					src={currentSong.audio}></audio>
 			</div>
 		</div>
 	);
