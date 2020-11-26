@@ -6,5 +6,7 @@
 	box-sizing: border-box;
 }
 
+@import './variables';
+@import './typography';
 @import './player';
 @import './song';

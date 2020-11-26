@@ -1,0 +1,11 @@
+h1,
+h2,
+h3 {
+	color: $black;
+}
+
+h1.dark-mode,
+h2.dark-mode,
+h3.dark-mode {
+	color: $white;
+}

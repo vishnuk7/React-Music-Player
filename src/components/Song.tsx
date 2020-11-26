@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { SongContext } from '../contexts/SongContext';
 
-function Song() {
+const Song: React.FC = () => {
+	const [currentSong] = useContext(SongContext);
 	return (
 		<div className='song-container'>
-			<p>Picture</p>
-			<p>Song Name</p>
+			<img src={currentSong.cover} alt={currentSong.name}></img>
+			<h2>Song Name</h2>
 			<p>Artist</p>
 		</div>
 	);
-}
+};
 
 export default Song;

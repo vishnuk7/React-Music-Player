@@ -1,7 +1,7 @@
 import React from 'react';
 import { FiPlay, FiSkipBack, FiSkipForward } from 'react-icons/fi';
 
-function Player() {
+const Player: React.FC = () => {
 	return (
 		<div className='player-container'>
 			<div className='time-control'>
@@ -16,6 +16,6 @@ function Player() {
 			</div>
 		</div>
 	);
-}
+};
 
 export default Player;
