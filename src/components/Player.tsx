@@ -12,13 +12,17 @@ const Player: React.FC = () => {
 	const audioRef = useRef<HTMLAudioElement>(null);
 	const [isPlaying, toggle] = useToggle();
 	const [songInfo, setSongInfo] = useState<ISongInfo>({ currentTime: 0, duration: 0 });
-
+	const [currentSong] = useContext(SongContext);
 	const formatTime = (time: number): string => Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 10)).slice(-2);
 
 	const updateTimeHandler = (e: React.ChangeEvent<HTMLAudioElement>) => {
 		const duration = e.target.duration;
 		const currentTime = e.target.currentTime;
 		setSongInfo({ currentTime, duration });
+	};
+
+	const dragHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (audioRef.current !== null) audioRef.current.currentTime = parseInt(e.target.value);
 	};
 
 	const playerHanlder = () => {
@@ -32,13 +36,18 @@ const Player: React.FC = () => {
 			}
 		}
 	};
-	const [currentSong] = useContext(SongContext);
 
 	return (
 		<div className='player-container'>
 			<div className='time-control'>
 				<p>{formatTime(songInfo.currentTime)}</p>
-				<input type='range' />
+				<input
+					type='range'
+					min={0}
+					max={songInfo.duration}
+					value={songInfo.currentTime}
+					onChange={dragHandler}
+				/>
 				<p>{formatTime(songInfo.duration)}</p>
 			</div>
 			<div className='play-control'>
