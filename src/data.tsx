@@ -1,15 +1,6 @@
-import { v4 as uuidv4 } from 'uuid';
-type chillHopType = {
-	name: string;
-	cover: string;
-	artist: string;
-	audio: string;
-	color: string[];
-	id: string;
-	active: boolean;
-}[];
+import { songInfoType } from './types/Song.td';
 
-const chillHop = (): chillHopType => {
+const chillHop = (): songInfoType[] => {
 	return [
 		{
 			name: 'Beaver Creek',

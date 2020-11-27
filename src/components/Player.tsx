@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { FiPlay, FiSkipBack, FiSkipForward, FiPause } from 'react-icons/fi';
 import { PlayingContext } from '../contexts/PlayingContext';
 
-import { playingSongContext } from '../types/Song.td';
+import { playingSongContextType } from '../types/Song.td';
 
 interface ISongInfo {
 	currentTime: number;
@@ -12,7 +12,7 @@ interface ISongInfo {
 const Player: React.FC = () => {
 	const [songInfo, setSongInfo] = useState<ISongInfo>({ currentTime: 0, duration: 0 });
 
-	const { currentSong, isPlaying, playingToggle, audioRef } = useContext<playingSongContext>(PlayingContext);
+	const { currentSong, isPlaying, playingToggle, audioRef } = useContext<playingSongContextType>(PlayingContext);
 
 	const formatTime = (time: number): string => Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 10)).slice(-2);
 
@@ -25,6 +25,10 @@ const Player: React.FC = () => {
 	const dragHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (audioRef!.current !== null) audioRef!.current.currentTime = parseInt(e.target.value);
 	};
+
+	// const onKeyHandler = (e: React.KeyboardEvent<HTMLAudioElement>) => {
+	// 	console.log(audioRef);
+	// };
 
 	const playerHanlder = () => {
 		if (audioRef!.current !== null) {

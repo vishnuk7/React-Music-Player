@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { PlayingContext } from '../contexts/PlayingContext';
-import { playingSongContext } from '../types/Song.td';
+import { playingSongContextType } from '../types/Song.td';
 
 const Song: React.FC = () => {
-	const { currentSong } = useContext<playingSongContext>(PlayingContext);
+	const { currentSong } = useContext<playingSongContextType>(PlayingContext);
 	return (
 		<div className='song-container'>
 			<img src={currentSong.cover} alt={currentSong.name}></img>

@@ -8,10 +8,15 @@ export interface songInfoType {
 	active: boolean;
 }
 
-export interface playingSongContext {
+export interface playingSongContextType {
 	currentSong: songInfoType;
 	setCurrentSong: React.Dispatch<React.SetStateAction<songInfoType>>;
 	isPlaying?: boolean;
 	audioRef?: React.RefObject<HTMLAudioElement>;
 	playingToggle?: () => void;
+}
+
+export interface songsContextType {
+	songs?: songInfoType[];
+	setSongs?: React.Dispatch<React.SetStateAction<songInfoType[]>>;
 }

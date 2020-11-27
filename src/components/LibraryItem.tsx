@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { PlayingContext } from '../contexts/PlayingContext';
-import { playingSongContext } from '../types/Song.td';
-import songs from '../data';
+import { playingSongContextType, songInfoType } from '../types/Song.td';
+
+import { SongContext } from '../contexts/SongsContext';
 
 interface Props {
 	name: string;
@@ -12,13 +13,34 @@ interface Props {
 	id: string;
 	active?: boolean;
 }
-const LibraryItem: React.FC<Props> = ({ id, name, cover, artist }) => {
-	const { setCurrentSong, isPlaying, audioRef } = useContext<playingSongContext>(PlayingContext);
+const LibraryItem: React.FC<Props> = ({ id, name, cover, artist, active }) => {
+	const { currentSong, setCurrentSong, isPlaying, audioRef } = useContext<playingSongContextType>(PlayingContext);
+
+	const songsList = useContext(SongContext);
+	const songs = songsList.songs as songInfoType[];
+	const setSongs = songsList.setSongs!;
+
 	const aref = audioRef as React.RefObject<HTMLAudioElement>;
 	const songSelectHandler = () => {
 		//selecting song
-		const currentSong = songs().find((song) => song.id === id);
-		if (currentSong !== undefined) setCurrentSong(currentSong);
+		const selectedSong = songs.find((song) => song.id === id);
+		const newSongs = songs.map((song) => {
+			if (song.id === id)
+				return {
+					...song,
+					active: true,
+				};
+			else
+				return {
+					...song,
+					active: false,
+				};
+		});
+
+		if (selectedSong !== undefined) {
+			setCurrentSong(selectedSong);
+			setSongs(newSongs);
+		}
 
 		//playing the selected song if song is not loaded then wait for it
 		if (isPlaying) {
@@ -30,7 +52,7 @@ const LibraryItem: React.FC<Props> = ({ id, name, cover, artist }) => {
 	};
 
 	return (
-		<div onClick={songSelectHandler} className='library-item'>
+		<div onClick={songSelectHandler} className={`library-item ${active && 'selected'}`}>
 			<img src={cover} alt={name} />
 			<div className='song-description'>
 				<h3>{name}</h3>
