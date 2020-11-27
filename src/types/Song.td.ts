@@ -10,7 +10,8 @@ export interface songInfoType {
 
 export interface playingSongContextType {
 	currentSong: songInfoType;
-	setCurrentSong: React.Dispatch<React.SetStateAction<songInfoType>>;
+	changeCurrentSong?: React.Dispatch<React.SetStateAction<songInfoType>>;
+	setCurrentSong?: (song: songInfoType) => void;
 	isPlaying?: boolean;
 	audioRef?: React.RefObject<HTMLAudioElement>;
 	playingToggle?: () => void;
