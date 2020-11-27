@@ -1,7 +1,9 @@
 import React from 'react';
 import Library from './components/Library';
+import Navbar from './components/NavBar';
 import Player from './components/Player';
 import Song from './components/Song';
+import { LibraryProvider } from './contexts/LibraryContext';
 import { PlayingProvider } from './contexts/PlayingContext';
 import { SongProvider } from './contexts/SongsContext';
 
@@ -12,7 +14,10 @@ const App: React.FC = () => {
 		<div className='app'>
 			<SongProvider>
 				<PlayingProvider>
-					<Library />
+					<LibraryProvider>
+						<Navbar />
+						<Library />
+					</LibraryProvider>
 					<div className='music-player'>
 						<Song />
 						<Player />

@@ -1,0 +1,25 @@
+.navbar {
+	display: flex;
+	padding: 2rem 2rem;
+	justify-content: space-around;
+	align-items: center;
+
+	button {
+		outline: none;
+		padding: 1rem 2rem;
+		font-size: 1rem;
+		font-weight: 700;
+		letter-spacing: 0.1rem;
+		background: $yellow;
+		border: none;
+		transition: all 0.3 ease-in-out;
+		svg {
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+
+		&:hover {
+			background-color: lighten($yellow, 10%);
+		}
+	}
+}

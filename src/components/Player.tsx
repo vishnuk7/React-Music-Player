@@ -56,14 +56,14 @@ const Player: React.FC = () => {
 				<p>{formatTime(songInfo.duration)}</p>
 			</div>
 			<div className='play-control'>
-				<FiSkipBack size={'1.5rem'} className='skip-backward' />
+				<FiSkipBack size={'1.5em'} className='skip-backward' />
 				{isPlaying ? (
-					<FiPause onClick={playerHanlder} size={'1.5rem'} className='play' />
+					<FiPause onClick={playerHanlder} size={'1.5em'} className='play' />
 				) : (
-					<FiPlay onClick={playerHanlder} size={'1.5rem'} className='play' />
+					<FiPlay onClick={playerHanlder} size={'1.5em'} className='play' />
 				)}
 
-				<FiSkipForward size={'1.5rem'} className='skip-forward' />
+				<FiSkipForward size={'1.5em'} className='skip-forward' />
 				<audio
 					onLoadedMetadata={updateTimeHandler}
 					onTimeUpdate={updateTimeHandler}

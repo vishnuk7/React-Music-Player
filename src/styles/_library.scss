@@ -1,11 +1,18 @@
 .library {
 	height: 100vh;
-
+	position: fixed;
+	top: 0;
+	left: 0;
 	width: 20%;
 	overflow: auto;
-	display: flex;
-	flex-direction: column;
-
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14);
+	transform: translateX(-100%);
+	opacity: 0;
+	transition: all 0.3s ease-in-out;
+	&.active {
+		transform: translateX(0);
+		opacity: 1;
+	}
 	h2 {
 		padding: 1rem 0rem 3rem 2rem;
 	}

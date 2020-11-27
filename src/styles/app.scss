@@ -12,15 +12,15 @@ html {
 }
 
 .app {
-	display: flex;
 }
 
 .music-player {
-	width: 80%;
+	width: 100%;
 }
 
 @import './variables';
 @import './typography';
+@import './navbar';
 @import './player';
 @import './song';
 @import './library';

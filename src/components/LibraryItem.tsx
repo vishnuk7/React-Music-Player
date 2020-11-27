@@ -14,7 +14,7 @@ interface Props {
 	active?: boolean;
 }
 const LibraryItem: React.FC<Props> = ({ id, name, cover, artist, active }) => {
-	const { currentSong, setCurrentSong, isPlaying, audioRef } = useContext<playingSongContextType>(PlayingContext);
+	const { setCurrentSong, isPlaying, audioRef } = useContext<playingSongContextType>(PlayingContext);
 
 	const songsList = useContext(SongContext);
 	const songs = songsList.songs as songInfoType[];
