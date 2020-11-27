@@ -18,7 +18,7 @@ const chillHop = (): chillHopType => {
 			artist: 'Aso, Middle School, Aviino',
 			audio: 'https://mp3.chillhop.com/serve.php/?mp3=10075',
 			color: ['#205950', '#2ab3bf'],
-			id: uuidv4(),
+			id: 'd6aeb71b-7078-4292-a430-97f7bb3f8b9b',
 			active: true,
 		},
 		{
@@ -28,7 +28,7 @@ const chillHop = (): chillHopType => {
 			artist: 'Aiguille',
 			audio: 'https://mp3.chillhop.com/serve.php/?mp3=9272',
 			color: ['#EF8EA9', '#ab417f'],
-			id: uuidv4(),
+			id: 'ec7040b1-6f20-40b7-87f4-44e153730450',
 			active: false,
 		},
 		{
@@ -38,7 +38,7 @@ const chillHop = (): chillHopType => {
 			artist: 'Swørn',
 			audio: 'https://mp3.chillhop.com/serve.php/?mp3=9222',
 			color: ['#CD607D', '#c94043'],
-			id: uuidv4(),
+			id: 'fb611c94-ca58-4dca-8b27-d58aa1cc7c0e',
 			active: false,
 		},
 		{
@@ -48,7 +48,7 @@ const chillHop = (): chillHopType => {
 			artist: 'Aiguille',
 			audio: 'https://mp3.chillhop.com/serve.php/?mp3=9148',
 			color: ['#EF8EA9', '#ab417f'],
-			id: uuidv4(),
+			id: '489d9477-4be2-4c48-b05d-dbcbc419560a',
 			active: false,
 		},
 		{
@@ -58,7 +58,7 @@ const chillHop = (): chillHopType => {
 			artist: 'Swørn',
 			audio: 'https://mp3.chillhop.com/serve.php/?mp3=9228',
 			color: ['#CD607D', '#c94043'],
-			id: uuidv4(),
+			id: '5809f031-4a00-4755-afa2-d36f2fa0d340',
 			active: false,
 		},
 		{
@@ -68,7 +68,7 @@ const chillHop = (): chillHopType => {
 			artist: 'Aso, Middle School, Aviino',
 			audio: 'https://mp3.chillhop.com/serve.php/?mp3=10074',
 			color: ['#205950', '#2ab3bf'],
-			id: uuidv4(),
+			id: 'e5b9d5dd-9072-44b1-9702-c85ff2924416',
 			active: false,
 		},
 		//ADD MORE HERE

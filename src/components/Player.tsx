@@ -1,7 +1,8 @@
 import React, { useRef, useContext, useState } from 'react';
 import { FiPlay, FiSkipBack, FiSkipForward, FiPause } from 'react-icons/fi';
-import { SongContext } from '../contexts/SongContext';
+import { PlayingContext } from '../contexts/PlayingContext';
 import useToggle from '../hooks/useToggle';
+import { playingSongContext } from '../types/Song.td';
 
 interface ISongInfo {
 	currentTime: number;
@@ -12,7 +13,9 @@ const Player: React.FC = () => {
 	const audioRef = useRef<HTMLAudioElement>(null);
 	const [isPlaying, toggle] = useToggle();
 	const [songInfo, setSongInfo] = useState<ISongInfo>({ currentTime: 0, duration: 0 });
-	const [currentSong] = useContext(SongContext);
+
+	const { currentSong, setCurrentSong } = useContext<playingSongContext>(PlayingContext);
+
 	const formatTime = (time: number): string => Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 10)).slice(-2);
 
 	const updateTimeHandler = (e: React.ChangeEvent<HTMLAudioElement>) => {
