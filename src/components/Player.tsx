@@ -1,5 +1,5 @@
 import React, { useRef, useContext, useState } from 'react';
-import { FiPlay, FiSkipBack, FiSkipForward } from 'react-icons/fi';
+import { FiPlay, FiSkipBack, FiSkipForward, FiPause } from 'react-icons/fi';
 import { SongContext } from '../contexts/SongContext';
 import useToggle from '../hooks/useToggle';
 
@@ -52,7 +52,12 @@ const Player: React.FC = () => {
 			</div>
 			<div className='play-control'>
 				<FiSkipBack size={'1.5rem'} className='skip-backward' />
-				<FiPlay onClick={playerHanlder} size={'1.5rem'} className='play' />
+				{isPlaying ? (
+					<FiPause onClick={playerHanlder} size={'1.5rem'} className='play' />
+				) : (
+					<FiPlay onClick={playerHanlder} size={'1.5rem'} className='play' />
+				)}
+
 				<FiSkipForward size={'1.5rem'} className='skip-forward' />
 				<audio
 					onLoadedMetadata={updateTimeHandler}
