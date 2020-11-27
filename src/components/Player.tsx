@@ -1,7 +1,7 @@
-import React, { useRef, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FiPlay, FiSkipBack, FiSkipForward, FiPause } from 'react-icons/fi';
 import { PlayingContext } from '../contexts/PlayingContext';
-import useToggle from '../hooks/useToggle';
+
 import { playingSongContext } from '../types/Song.td';
 
 interface ISongInfo {
@@ -10,11 +10,9 @@ interface ISongInfo {
 }
 
 const Player: React.FC = () => {
-	const audioRef = useRef<HTMLAudioElement>(null);
-	const [isPlaying, toggle] = useToggle();
 	const [songInfo, setSongInfo] = useState<ISongInfo>({ currentTime: 0, duration: 0 });
 
-	const { currentSong, setCurrentSong } = useContext<playingSongContext>(PlayingContext);
+	const { currentSong, isPlaying, playingToggle, audioRef } = useContext<playingSongContext>(PlayingContext);
 
 	const formatTime = (time: number): string => Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 10)).slice(-2);
 
@@ -25,17 +23,17 @@ const Player: React.FC = () => {
 	};
 
 	const dragHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (audioRef.current !== null) audioRef.current.currentTime = parseInt(e.target.value);
+		if (audioRef!.current !== null) audioRef!.current.currentTime = parseInt(e.target.value);
 	};
 
 	const playerHanlder = () => {
-		if (audioRef.current !== null) {
+		if (audioRef!.current !== null) {
 			if (isPlaying) {
-				audioRef.current.pause();
-				toggle();
+				audioRef!.current.pause();
+				if (playingToggle !== undefined) playingToggle();
 			} else {
-				audioRef.current.play();
-				toggle();
+				audioRef!.current.play();
+				if (playingToggle !== undefined) playingToggle();
 			}
 		}
 	};

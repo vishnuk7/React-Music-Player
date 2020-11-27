@@ -13,10 +13,20 @@ interface Props {
 	active?: boolean;
 }
 const LibraryItem: React.FC<Props> = ({ id, name, cover, artist }) => {
-	const { setCurrentSong } = useContext<playingSongContext>(PlayingContext);
+	const { setCurrentSong, isPlaying, audioRef } = useContext<playingSongContext>(PlayingContext);
+	const aref = audioRef as React.RefObject<HTMLAudioElement>;
 	const songSelectHandler = () => {
+		//selecting song
 		const currentSong = songs().find((song) => song.id === id);
 		if (currentSong !== undefined) setCurrentSong(currentSong);
+
+		//playing the selected song if song is not loaded then wait for it
+		if (isPlaying) {
+			const playpromise = aref.current?.play();
+			if (playpromise !== undefined) {
+				playpromise.then(() => aref.current?.play());
+			}
+		}
 	};
 
 	return (
