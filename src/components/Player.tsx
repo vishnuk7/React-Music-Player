@@ -3,8 +3,6 @@ import { FiPlay, FiSkipBack, FiSkipForward, FiPause } from 'react-icons/fi';
 import { PlayingContext } from '../contexts/PlayingContext';
 import { SongContext } from '../contexts/SongsContext';
 
-import { playingSongContextType } from '../types/Song.td';
-
 interface ISongInfo {
 	currentTime: number;
 	duration: number;
@@ -25,21 +23,32 @@ const Player: React.FC = () => {
 		setSongInfo({ currentTime, duration });
 	};
 
-	const skipHandler = (direction: string) => {
+	const skipHandler = async (direction: string) => {
 		const index = songs.findIndex((song) => song.id === currentSong.id);
 		if (direction === 'skip-backward') {
 			if (index - 1 < 0) {
-				setCurrentSong(songs[songs.length - 1]);
+				await setCurrentSong(songs[songs.length - 1]);
+				if (isPlaying && audioRef!.current !== null) {
+					audioRef!.current.play();
+				}
+				return;
 			} else {
-				setCurrentSong(songs[index - 1]);
+				await setCurrentSong(songs[index - 1]);
 			}
 		} else if (direction === 'skip-forward') {
-			setCurrentSong(songs[(index + 1) % songs.length]);
+			await setCurrentSong(songs[(index + 1) % songs.length]);
+		}
+		if (isPlaying && audioRef!.current !== null) {
+			audioRef!.current.play();
 		}
 	};
 
 	const dragHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (audioRef!.current !== null) audioRef!.current.currentTime = parseInt(e.target.value);
+	};
+
+	const endedHandler = () => {
+		skipHandler('skip-forward');
 	};
 
 	// const onKeyHandler = (e: React.KeyboardEvent<HTMLAudioElement>) => {
@@ -83,6 +92,7 @@ const Player: React.FC = () => {
 				<audio
 					onLoadedMetadata={updateTimeHandler}
 					onTimeUpdate={updateTimeHandler}
+					onEnded={endedHandler}
 					ref={audioRef}
 					src={currentSong.audio}></audio>
 			</div>

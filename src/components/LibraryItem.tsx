@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { PlayingContext } from '../contexts/PlayingContext';
-import { playingSongContextType, songInfoType } from '../types/Song.td';
+import { songInfoType } from '../types/Song.td';
 
 import { SongContext } from '../contexts/SongsContext';
 
@@ -13,30 +13,25 @@ interface Props {
 	id: string;
 	active?: boolean;
 }
+
 const LibraryItem: React.FC<Props> = ({ id, name, cover, artist, active }) => {
-	const { isPlaying, audioRef } = useContext(PlayingContext);
+	const { isPlaying } = useContext(PlayingContext);
+	const audioRef = useContext(PlayingContext).audioRef!;
 	const setCurrentSong = useContext(PlayingContext).setCurrentSong!;
 
 	const songsList = useContext(SongContext);
 	const songs = songsList.songs as songInfoType[];
-	const setSongs = songsList.setSongs!;
 
-	const aref = audioRef as React.RefObject<HTMLAudioElement>;
-	const songSelectHandler = () => {
+	const songSelectHandler = async () => {
 		//selecting song
 		const selectedSong = songs.find((song) => song.id === id);
 
 		if (selectedSong !== undefined) {
-			setCurrentSong(selectedSong);
+			await setCurrentSong(selectedSong);
 		}
 
 		//playing the selected song if song is not loaded then wait for it
-		if (isPlaying) {
-			const playpromise = aref.current?.play();
-			if (playpromise !== undefined) {
-				playpromise.then(() => aref.current?.play());
-			}
-		}
+		if (isPlaying && audioRef.current !== null) audioRef.current.play();
 	};
 
 	return (
