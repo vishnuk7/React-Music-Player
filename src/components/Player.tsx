@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { FiPlay, FiSkipBack, FiSkipForward, FiPause } from 'react-icons/fi';
+import Slider from 'react-input-slider';
 import { PlayingContext } from '../contexts/PlayingContext';
 import { SongContext } from '../contexts/SongsContext';
 
@@ -43,8 +44,8 @@ const Player: React.FC = () => {
 		}
 	};
 
-	const dragHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (audioRef!.current !== null) audioRef!.current.currentTime = parseInt(e.target.value);
+	const dragHandler = (x: number) => {
+		if (audioRef!.current !== null) audioRef!.current.currentTime = x;
 	};
 
 	const endedHandler = () => {
@@ -71,13 +72,30 @@ const Player: React.FC = () => {
 		<div className='player-container'>
 			<div className='time-control'>
 				<p>{formatTime(songInfo.currentTime)}</p>
-				<input
-					type='range'
-					min={0}
-					max={songInfo.duration || 0}
-					value={songInfo.currentTime}
-					onChange={dragHandler}
-				/>
+				<>
+					<Slider
+						x={songInfo.currentTime}
+						xmin={0}
+						xmax={songInfo.duration || 0}
+						onChange={({ x }) => dragHandler(x)}
+						styles={{
+							track: {
+								height: '1.5rem',
+								width: '100%',
+								backgroundColor: 'rgb(204, 204, 204)',
+								borderRadius: '1rem',
+							},
+							active: {
+								background: `linear-gradient(to right, ${currentSong.color[0]}, ${currentSong.color[1]})`,
+								borderRadius: '1rem',
+							},
+							thumb: {
+								width: 0,
+								height: 0,
+							},
+						}}
+					/>
+				</>
 				<p>{formatTime(songInfo.duration)}</p>
 			</div>
 			<div className='play-control'>
