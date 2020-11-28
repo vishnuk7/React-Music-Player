@@ -6,13 +6,65 @@
 	justify-content: center;
 }
 
+@mixin track {
+	background: rgb(204, 204, 204);
+	border-radius: 1rem;
+	height: 1.5rem;
+}
+
+@mixin thumb() {
+	height: 1rem;
+	width: 1rem;
+	border: none;
+	background: transparent;
+}
+
+@mixin fill {
+	height: 100%;
+	border-radius: 1rem;
+}
+
 .time-control {
 	width: 50%;
 	display: flex;
 	input {
 		width: 100%;
-		padding: '1rem 2rem';
+		-moz-appearance: none;
+		appearance: none;
+		-webkit-appearance: none;
+		cursor: pointer;
+		padding: 1rem 2rem;
 	}
+	input[type='range'] {
+		&:focus {
+			outline: $yellow;
+		}
+
+		&::-webkit-slider-runnable-track {
+			@include track();
+			background: $yellow;
+		}
+
+		&::-moz-range-track {
+			@include track();
+		}
+
+		//thumb for firefox and chrome
+		&::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			@include thumb();
+		}
+		&::-moz-range-thumb {
+			-moz-appearance: none;
+			@include thumb();
+		}
+
+		//progress fill
+		&::-moz-range-progress {
+			@include fill();
+		}
+	}
+
 	p {
 		padding: 1rem;
 	}
