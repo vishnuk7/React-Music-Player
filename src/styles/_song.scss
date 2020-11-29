@@ -4,6 +4,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
 	img {
 		width: 20%;
 		border-radius: 50%;
@@ -13,5 +14,13 @@
 	}
 	h3 {
 		font-size: 1rem;
+	}
+}
+
+@media screen and (max-width: 786px) {
+	.song-container {
+		img {
+			width: 60%;
+		}
 	}
 }

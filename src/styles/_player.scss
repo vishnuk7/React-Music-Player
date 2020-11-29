@@ -21,7 +21,18 @@
 	justify-content: space-between;
 	align-items: center;
 	width: 30%;
+	padding: 1rem 0;
 	svg {
 		cursor: pointer;
+	}
+}
+
+@media screen and (max-width: 786px) {
+	.time-control {
+		width: 90%;
+	}
+
+	.play-control {
+		width: 60%;
 	}
 }
