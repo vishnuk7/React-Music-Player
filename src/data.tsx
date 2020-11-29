@@ -5,7 +5,7 @@ const chillHop = (): songInfoType[] => {
 		{
 			name: 'Beaver Creek',
 			cover:
-				'https://chillhop.com/wp-content/uploads/2020/09/0255e8b8c74c90d4a27c594b3452b2daafae608d-1024x1024.jpg',
+				'https://images.unsplash.com/photo-1565638427888-268b7714225e?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=50',
 			artist: 'Aso, Middle School, Aviino',
 			audio: 'https://mp3.chillhop.com/serve.php/?mp3=10075',
 			color: ['#205950', '#2ab3bf'],
@@ -15,7 +15,7 @@ const chillHop = (): songInfoType[] => {
 		{
 			name: 'Daylight',
 			cover:
-				'https://chillhop.com/wp-content/uploads/2020/07/ef95e219a44869318b7806e9f0f794a1f9c451e4-1024x1024.jpg',
+				'https://images.unsplash.com/photo-1581337204873-ef36aa186caa?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1338&q=50',
 			artist: 'Aiguille',
 			audio: 'https://mp3.chillhop.com/serve.php/?mp3=9272',
 			color: ['#EF8EA9', '#ab417f'],
@@ -25,7 +25,7 @@ const chillHop = (): songInfoType[] => {
 		{
 			name: 'Keep Going',
 			cover:
-				'https://chillhop.com/wp-content/uploads/2020/07/ff35dede32321a8aa0953809812941bcf8a6bd35-1024x1024.jpg',
+				'https://images.unsplash.com/photo-1546497621-27d1282f7af2?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=50',
 			artist: 'Swørn',
 			audio: 'https://mp3.chillhop.com/serve.php/?mp3=9222',
 			color: ['#CD607D', '#c94043'],
@@ -35,7 +35,7 @@ const chillHop = (): songInfoType[] => {
 		{
 			name: 'Nightfall',
 			cover:
-				'https://chillhop.com/wp-content/uploads/2020/07/ef95e219a44869318b7806e9f0f794a1f9c451e4-1024x1024.jpg',
+				'https://images.unsplash.com/photo-1520013817300-1f4c1cb245ef?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1387&q=50',
 			artist: 'Aiguille',
 			audio: 'https://mp3.chillhop.com/serve.php/?mp3=9148',
 			color: ['#EF8EA9', '#ab417f'],
@@ -45,7 +45,7 @@ const chillHop = (): songInfoType[] => {
 		{
 			name: 'Reflection',
 			cover:
-				'https://chillhop.com/wp-content/uploads/2020/07/ff35dede32321a8aa0953809812941bcf8a6bd35-1024x1024.jpg',
+				'https://images.unsplash.com/photo-1481349518771-20055b2a7b24?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1409&q=50',
 			artist: 'Swørn',
 			audio: 'https://mp3.chillhop.com/serve.php/?mp3=9228',
 			color: ['#CD607D', '#c94043'],
@@ -55,7 +55,7 @@ const chillHop = (): songInfoType[] => {
 		{
 			name: 'Under the City Stars',
 			cover:
-				'https://chillhop.com/wp-content/uploads/2020/09/0255e8b8c74c90d4a27c594b3452b2daafae608d-1024x1024.jpg',
+				'https://images.unsplash.com/photo-1485939420171-378de92ecd4c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=50',
 			artist: 'Aso, Middle School, Aviino',
 			audio: 'https://mp3.chillhop.com/serve.php/?mp3=10074',
 			color: ['#205950', '#2ab3bf'],

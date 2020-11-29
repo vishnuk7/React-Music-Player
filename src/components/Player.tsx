@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { FiPlay, FiSkipBack, FiSkipForward, FiPause } from 'react-icons/fi';
 import Slider from 'react-input-slider';
+import { usePalette } from 'react-palette';
 import { PlayingContext } from '../contexts/PlayingContext';
 import { SongContext } from '../contexts/SongsContext';
 
@@ -15,6 +16,8 @@ const Player: React.FC = () => {
 	const { currentSong, isPlaying, playingToggle, audioRef } = useContext(PlayingContext);
 	const songs = useContext(SongContext).songs!;
 	const setCurrentSong = useContext(PlayingContext).setCurrentSong!;
+
+	const { data } = usePalette(currentSong.cover);
 
 	const formatTime = (time: number): string => Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 10)).slice(-2);
 
@@ -86,7 +89,7 @@ const Player: React.FC = () => {
 								borderRadius: '1rem',
 							},
 							active: {
-								background: `linear-gradient(to right, ${currentSong.color[0]}, ${currentSong.color[1]})`,
+								background: `linear-gradient(to right, ${data.vibrant}, ${data.lightVibrant})`,
 								borderRadius: '1rem',
 							},
 							thumb: {

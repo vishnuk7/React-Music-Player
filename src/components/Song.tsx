@@ -6,7 +6,7 @@ const Song: React.FC = () => {
 	const { currentSong } = useContext<playingSongContextType>(PlayingContext);
 	return (
 		<div className='song-container'>
-			<img src={currentSong.cover} alt={currentSong.name}></img>
+			<img src={currentSong.cover} alt={currentSong.name} />
 			<h2>{currentSong.name}</h2>
 			<p>{currentSong.artist}</p>
 		</div>
