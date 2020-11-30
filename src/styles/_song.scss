@@ -47,7 +47,17 @@
 @media screen and (max-width: 786px) {
 	.song-container {
 		img {
-			width: 60%;
+			width: 18rem;
+			height: 18rem;
+		}
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.song-container {
+		img {
+			width: 15rem;
+			height: 15rem;
 		}
 	}
 }

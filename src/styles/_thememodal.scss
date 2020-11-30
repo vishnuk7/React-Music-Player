@@ -53,3 +53,12 @@
 		}
 	}
 }
+
+@media screen and (max-width: 576px) {
+	.cards {
+		flex-direction: column;
+	}
+	.customModal {
+		height: 100%;
+	}
+}
