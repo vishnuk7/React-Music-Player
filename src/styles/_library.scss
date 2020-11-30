@@ -26,6 +26,8 @@
 	transition: all 0.2s ease-in-out;
 	img {
 		width: 40%;
+		border-radius: 0.5rem;
+		height: 7.5rem;
 	}
 }
 
@@ -37,7 +39,8 @@
 
 .library-item:hover,
 .library-item.isDark:hover {
-	background-color: $yellow;
+	color: $black;
+	background-color: lighten($yellow, 15%);
 }
 
 .selected {
@@ -51,7 +54,7 @@
 		margin-bottom: 0.5rem;
 	}
 	h4 {
-		color: lighten($black, 15%);
+		font-weight: 300;
 		font-size: 1rem;
 	}
 }
@@ -76,7 +79,6 @@
 
 @media screen and (max-width: 786px) {
 	.library {
-		background: #ffffff;
 		z-index: 5;
 		width: 100%;
 	}

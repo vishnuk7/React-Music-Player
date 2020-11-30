@@ -21,3 +21,10 @@ export interface songsContextType {
 	songs?: songInfoType[];
 	setSongs?: React.Dispatch<React.SetStateAction<songInfoType[]>>;
 }
+
+export interface darkThemeType {
+	isDark: boolean;
+	isThemeSet: boolean;
+	toggleDark: () => void;
+	setThemeSet: () => void;
+}

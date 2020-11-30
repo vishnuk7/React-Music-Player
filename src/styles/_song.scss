@@ -18,6 +18,32 @@
 	}
 }
 
+.rotate-cover {
+	animation-name: rotate-animation;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	animation-direction: normal;
+	animation-duration: 10s;
+}
+
+@keyframes rotate-animation {
+	0% {
+		transform: rotate(0deg);
+	}
+	// 25% {
+	// 	transform: rotate(90deg);
+	// }
+	// 50% {
+	// 	transform: rotate(180deg);
+	// }
+	// 75% {
+	// 	transform: rotate(270deg);
+	// }
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
 @media screen and (max-width: 786px) {
 	.song-container {
 		img {

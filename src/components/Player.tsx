@@ -87,6 +87,7 @@ const Player: React.FC = () => {
 								width: '100%',
 								backgroundColor: 'rgb(204, 204, 204)',
 								borderRadius: '1rem',
+								cursor: 'pointer',
 							},
 							active: {
 								background: `linear-gradient(to right, ${data.vibrant}, ${data.lightVibrant})`,
