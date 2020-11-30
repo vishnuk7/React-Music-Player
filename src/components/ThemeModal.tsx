@@ -4,7 +4,7 @@ import { ThemeContext } from '../contexts/ThemeContext';
 import 'react-responsive-modal/styles.css';
 
 const ThemeModal: React.FC = () => {
-	const { isDark, toggleDark, isThemeSet, setThemeSet } = useContext(ThemeContext);
+	const { toggleDark, isThemeSet, setThemeSet } = useContext(ThemeContext);
 	const [open, setOpen] = useState(!isThemeSet);
 	const onCloseModal = () => setOpen(false);
 	const selectTheme = (theme: string) => {
