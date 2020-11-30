@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { FiPlay, FiSkipBack, FiSkipForward, FiPause } from 'react-icons/fi';
+import { FiPlay, FiSkipBack, FiSkipForward, FiPause, FiRepeat, FiShuffle } from 'react-icons/fi';
 import Slider from 'react-input-slider';
 import { usePalette } from 'react-palette';
 import { PlayingContext } from '../contexts/PlayingContext';
@@ -13,7 +13,7 @@ interface ISongInfo {
 const Player: React.FC = () => {
 	const [songInfo, setSongInfo] = useState<ISongInfo>({ currentTime: 0, duration: 0 });
 
-	const { currentSong, isPlaying, playingToggle, audioRef } = useContext(PlayingContext);
+	const { currentSong, isPlaying, playingToggle, audioRef, isRepeate, toggleRepeate } = useContext(PlayingContext);
 	const songs = useContext(SongContext).songs!;
 	const setCurrentSong = useContext(PlayingContext).setCurrentSong!;
 
@@ -52,7 +52,10 @@ const Player: React.FC = () => {
 	};
 
 	const endedHandler = () => {
-		skipHandler('skip-forward');
+		if (audioRef!.current !== null && isRepeate) {
+			audioRef!.current.currentTime = 0;
+			audioRef!.current.play();
+		} else skipHandler('skip-forward');
 	};
 
 	// const onKeyHandler = (e: React.KeyboardEvent<HTMLAudioElement>) => {
@@ -103,6 +106,7 @@ const Player: React.FC = () => {
 				<p>{formatTime(songInfo.duration)}</p>
 			</div>
 			<div className='play-control'>
+				<FiShuffle size={'1.5em'} />
 				<FiSkipBack onClick={() => skipHandler('skip-backward')} size={'1.5em'} className='skip-backward' />
 				{isPlaying ? (
 					<FiPause onClick={playerHanlder} size={'1.5em'} className='play' />
@@ -111,6 +115,7 @@ const Player: React.FC = () => {
 				)}
 
 				<FiSkipForward onClick={() => skipHandler('skip-forward')} size={'1.5em'} className='skip-forward' />
+				<FiRepeat onClick={toggleRepeate} size={'1.5em'} className={`${isRepeate && 'repeate-color'}`} />
 				<audio
 					onLoadedMetadata={updateTimeHandler}
 					onTimeUpdate={updateTimeHandler}

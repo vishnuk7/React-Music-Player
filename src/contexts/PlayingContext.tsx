@@ -21,6 +21,7 @@ export const PlayingProvider: React.FC<{}> = (props) => {
 	const audioRef = useAudioRef();
 	const song = songs[0];
 	const [isPlaying, playingToggle] = useToggle();
+	const [isRepeate, toggleRepeate] = useToggle();
 	const [currentSong, changeCurrentSong] = useState<songInfoType>(song);
 	const setCurrentSong = (song: songInfoType) => {
 		const newSongs = songs.map((data) => {
@@ -38,6 +39,6 @@ export const PlayingProvider: React.FC<{}> = (props) => {
 		setSongs(newSongs);
 		changeCurrentSong(song);
 	};
-	const value = { currentSong, setCurrentSong, isPlaying, playingToggle, audioRef };
+	const value = { currentSong, setCurrentSong, isPlaying, playingToggle, audioRef, isRepeate, toggleRepeate };
 	return <PlayingContext.Provider value={value}>{props.children}</PlayingContext.Provider>;
 };
