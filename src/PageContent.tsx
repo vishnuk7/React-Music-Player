@@ -18,7 +18,6 @@ const PageContent: React.FC<React.ReactNode> = ({ children }) => {
 		window.localStorage.setItem('isDark', isDark.toString());
 	}, [isDark]);
 
-	console.log(isLibraryOpen);
 	return <div className={`app ${isDark && 'dark-theme'} ${isLibraryOpen && 'library-open'}`}>{children}</div>;
 };
 

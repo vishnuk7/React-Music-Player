@@ -14,7 +14,9 @@ export interface playingSongContextType {
 	setCurrentSong?: (song: songInfoType) => void;
 	isPlaying?: boolean;
 	isRepeate?: boolean;
+	isShuffle?: boolean;
 	toggleRepeate?: () => void;
+	toggleShuffle?: () => void;
 	audioRef?: React.RefObject<HTMLAudioElement>;
 	playingToggle?: () => void;
 }

@@ -11,9 +11,9 @@ used in this app are taken from [chillhop](https://chillhop.com/)
 ### Things to do
 - [ ] volume control
 
-- [ ] shuffle
+- [x] shuffle
 
-- [ ] repeate
+- [x] repeate
 
 - [ ] mute
 

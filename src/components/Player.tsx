@@ -13,13 +13,26 @@ interface ISongInfo {
 const Player: React.FC = () => {
 	const [songInfo, setSongInfo] = useState<ISongInfo>({ currentTime: 0, duration: 0 });
 
-	const { currentSong, isPlaying, playingToggle, audioRef, isRepeate, toggleRepeate } = useContext(PlayingContext);
+	const {
+		currentSong,
+		isPlaying,
+		playingToggle,
+		audioRef,
+		isRepeate,
+		toggleRepeate,
+		isShuffle,
+		toggleShuffle,
+	} = useContext(PlayingContext);
 	const songs = useContext(SongContext).songs!;
 	const setCurrentSong = useContext(PlayingContext).setCurrentSong!;
 
 	const { data } = usePalette(currentSong.cover);
 
 	const formatTime = (time: number): string => Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 10)).slice(-2);
+
+	let currentShuffle: number = songs.findIndex((s) => s.id === currentSong.id);
+	const [playingList, setPlayingList] = useState([currentShuffle]);
+	const [pointer, setPointer] = useState(0);
 
 	const updateTimeHandler = (e: React.ChangeEvent<HTMLAudioElement>) => {
 		const duration = e.target.duration;
@@ -30,7 +43,16 @@ const Player: React.FC = () => {
 	const skipHandler = async (direction: string) => {
 		const index = songs.findIndex((song) => song.id === currentSong.id);
 		if (direction === 'skip-backward') {
-			if (index - 1 < 0) {
+			if (isShuffle) {
+				let updatePointer = pointer - 1;
+				if (updatePointer < 0) {
+					await setCurrentSong(songs[playingList[playingList.length - 1]]);
+					setPointer(playingList.length - 1);
+				} else {
+					await setCurrentSong(songs[playingList[updatePointer]]);
+					setPointer(updatePointer);
+				}
+			} else if (index - 1 < 0) {
 				await setCurrentSong(songs[songs.length - 1]);
 				if (isPlaying && audioRef!.current !== null) {
 					audioRef!.current.play();
@@ -40,7 +62,17 @@ const Player: React.FC = () => {
 				await setCurrentSong(songs[index - 1]);
 			}
 		} else if (direction === 'skip-forward') {
-			await setCurrentSong(songs[(index + 1) % songs.length]);
+			if (isShuffle) {
+				let updatePointer = pointer + 1;
+				if (updatePointer === playingList.length) {
+					updatePointer = 0;
+				}
+				console.log(updatePointer);
+				await setCurrentSong(songs[playingList[updatePointer]]);
+				setPointer(updatePointer);
+			} else {
+				await setCurrentSong(songs[(index + 1) % songs.length]);
+			}
 		}
 		if (isPlaying && audioRef!.current !== null) {
 			audioRef!.current.play();
@@ -71,6 +103,24 @@ const Player: React.FC = () => {
 				audioRef!.current.play();
 				if (playingToggle !== undefined) playingToggle();
 			}
+		}
+	};
+
+	const shuffleHandler = () => {
+		if (toggleShuffle !== undefined) toggleShuffle();
+		if (!isShuffle) {
+			console.log('hi');
+			while (playingList.length !== songs.length) {
+				const randnum = Math.floor(Math.random() * songs.length);
+				if (!playingList.some((p) => p === randnum)) {
+					playingList.push(randnum);
+				}
+			}
+		} else {
+			while (playingList.length !== 0) {
+				playingList.pop();
+			}
+			setPlayingList([currentShuffle]);
 		}
 	};
 
@@ -106,7 +156,11 @@ const Player: React.FC = () => {
 				<p>{formatTime(songInfo.duration)}</p>
 			</div>
 			<div className='play-control'>
-				<FiShuffle size={'1.5em'} />
+				<FiShuffle
+					onClick={() => shuffleHandler()}
+					size={'1.5em'}
+					className={`${isShuffle && 'repeate-color'}`}
+				/>
 				<FiSkipBack onClick={() => skipHandler('skip-backward')} size={'1.5em'} className='skip-backward' />
 				{isPlaying ? (
 					<FiPause onClick={playerHanlder} size={'1.5em'} className='play' />
