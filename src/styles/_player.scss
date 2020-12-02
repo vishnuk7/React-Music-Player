@@ -25,6 +25,14 @@
 	svg {
 		cursor: pointer;
 	}
+
+	.volume-control {
+		display: flex;
+		align-items: center;
+		svg {
+			margin-right: 0.7rem;
+		}
+	}
 }
 
 .repeate-color {
@@ -38,5 +46,13 @@
 
 	.play-control {
 		width: 60%;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.play-control {
+		.volume-control {
+			display: none;
+		}
 	}
 }

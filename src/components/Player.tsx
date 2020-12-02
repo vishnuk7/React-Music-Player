@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { FiPlay, FiSkipBack, FiSkipForward, FiPause, FiRepeat, FiShuffle } from 'react-icons/fi';
+import { FiPlay, FiSkipBack, FiSkipForward, FiPause, FiRepeat, FiShuffle, FiVolume2, FiVolumeX } from 'react-icons/fi';
 import Slider from 'react-input-slider';
 import { usePalette } from 'react-palette';
 import { PlayingContext } from '../contexts/PlayingContext';
 import { SongContext } from '../contexts/SongsContext';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 interface ISongInfo {
 	currentTime: number;
@@ -12,6 +13,8 @@ interface ISongInfo {
 
 const Player: React.FC = () => {
 	const [songInfo, setSongInfo] = useState<ISongInfo>({ currentTime: 0, duration: 0 });
+
+	const { isDark } = useContext(ThemeContext);
 
 	const {
 		currentSong,
@@ -33,6 +36,8 @@ const Player: React.FC = () => {
 	let currentShuffle: number = songs.findIndex((s) => s.id === currentSong.id);
 	const [playingList, setPlayingList] = useState([currentShuffle]);
 	const [pointer, setPointer] = useState(0);
+
+	const [volume, setVolume] = useState(100);
 
 	const updateTimeHandler = (e: React.ChangeEvent<HTMLAudioElement>) => {
 		const duration = e.target.duration;
@@ -124,6 +129,14 @@ const Player: React.FC = () => {
 		}
 	};
 
+	const volumeHandler = (value: number) => {
+		console.log(value);
+		if (audioRef!.current !== null) {
+			audioRef!.current.volume = value / 100;
+			setVolume(value);
+		}
+	};
+
 	return (
 		<div className='player-container'>
 			<div className='time-control'>
@@ -139,12 +152,10 @@ const Player: React.FC = () => {
 								height: '1.5rem',
 								width: '100%',
 								backgroundColor: 'rgb(204, 204, 204)',
-								borderRadius: '1rem',
 								cursor: 'pointer',
 							},
 							active: {
 								background: `linear-gradient(to right, ${data.vibrant}, ${data.lightVibrant})`,
-								borderRadius: '1rem',
 							},
 							thumb: {
 								width: 0,
@@ -170,6 +181,31 @@ const Player: React.FC = () => {
 
 				<FiSkipForward onClick={() => skipHandler('skip-forward')} size={'1.5em'} className='skip-forward' />
 				<FiRepeat onClick={toggleRepeate} size={'1.5em'} className={`${isRepeate && 'repeate-color'}`} />
+				<div className='volume-control'>
+					{volume === 0 ? <FiVolumeX size={'1.5em'} /> : <FiVolume2 size={'1.5em'} />}
+
+					<Slider
+						axis='x'
+						xmin={0}
+						xstep={1}
+						xmax={100}
+						x={volume}
+						onChange={({ x }) => volumeHandler(x)}
+						styles={{
+							track: {
+								width: '5rem',
+								backgroundColor: 'rgb(204, 204, 204)',
+								cursor: 'pointer',
+							},
+							active: {
+								backgroundColor: '#ffac41',
+							},
+							thumb: {
+								backgroundColor: isDark ? ' #eeeeee' : '#222831',
+							},
+						}}
+					/>
+				</div>
 				<audio
 					onLoadedMetadata={updateTimeHandler}
 					onTimeUpdate={updateTimeHandler}

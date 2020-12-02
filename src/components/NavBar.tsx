@@ -17,7 +17,7 @@ const Navbar = () => {
 				)}
 
 				<button onClick={toggleLibraryOpen}>
-					Library <FiMusic />
+					<span>Library</span> <FiMusic />
 				</button>
 			</div>
 		</div>

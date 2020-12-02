@@ -9,13 +9,13 @@ used in this app are taken from [chillhop](https://chillhop.com/)
 ![demo](./readmeimg/out.gif)
 
 ### Things to do
-- [ ] volume control
+- [x] volume control
 
 - [x] shuffle
 
 - [x] repeate
 
-- [ ] mute
+- [x] mute
 
 - [ ] keyboard events
 
