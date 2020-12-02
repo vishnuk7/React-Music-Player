@@ -31,7 +31,7 @@ const Player: React.FC = () => {
 
 	const { data } = usePalette(currentSong.cover);
 
-	const formatTime = (time: number): string => Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 10)).slice(-2);
+	const formatTime = (time: number): string => Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 60)).slice(-2);
 
 	let currentShuffle: number = songs.findIndex((s) => s.id === currentSong.id);
 	const [playingList, setPlayingList] = useState([currentShuffle]);
