@@ -17,7 +17,7 @@ used in this app are taken from [chillhop](https://chillhop.com/)
 
 - [x] mute
 
-- [ ] keyboard events
+- [x] keyboard events
 
 ### Author
 

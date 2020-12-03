@@ -1,10 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { FiPlay, FiSkipBack, FiSkipForward, FiPause, FiRepeat, FiShuffle, FiVolume2, FiVolumeX } from 'react-icons/fi';
+import { useHotkeys } from 'react-hotkeys-hook';
 import Slider from 'react-input-slider';
 import { usePalette } from 'react-palette';
 import { PlayingContext } from '../contexts/PlayingContext';
 import { SongContext } from '../contexts/SongsContext';
 import { ThemeContext } from '../contexts/ThemeContext';
+
+const Mousetrap = require('mousetrap');
 
 interface ISongInfo {
 	currentTime: number;
@@ -95,10 +98,6 @@ const Player: React.FC = () => {
 		} else skipHandler('skip-forward');
 	};
 
-	// const onKeyHandler = (e: React.KeyboardEvent<HTMLAudioElement>) => {
-	// 	console.log(audioRef);
-	// };
-
 	const playerHanlder = () => {
 		if (audioRef!.current !== null) {
 			if (isPlaying) {
@@ -114,7 +113,6 @@ const Player: React.FC = () => {
 	const shuffleHandler = () => {
 		if (toggleShuffle !== undefined) toggleShuffle();
 		if (!isShuffle) {
-			console.log('hi');
 			while (playingList.length !== songs.length) {
 				const randnum = Math.floor(Math.random() * songs.length);
 				if (!playingList.some((p) => p === randnum)) {
@@ -130,12 +128,18 @@ const Player: React.FC = () => {
 	};
 
 	const volumeHandler = (value: number) => {
-		console.log(value);
 		if (audioRef!.current !== null) {
 			audioRef!.current.volume = value / 100;
 			setVolume(value);
 		}
 	};
+
+	//keyboard events
+	Mousetrap.bind('space', () => playerHanlder());
+	Mousetrap.bind('right', () => skipHandler('skip-forward'));
+	Mousetrap.bind('left', () => skipHandler('skip-backward'));
+	Mousetrap.bind('s', () => shuffleHandler());
+	Mousetrap.bind('r', toggleRepeate);
 
 	return (
 		<div className='player-container'>

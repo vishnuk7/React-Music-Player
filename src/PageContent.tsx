@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from 'react';
+
 import { LibraryContext } from './contexts/LibraryContext';
+import { PlayingContext } from './contexts/PlayingContext';
 import { ThemeContext } from './contexts/ThemeContext';
 
 const PageContent: React.FC<React.ReactNode> = ({ children }) => {

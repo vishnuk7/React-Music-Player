@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
 import Library from './components/Library';
 import Navbar from './components/NavBar';
 import Player from './components/Player';
@@ -23,6 +24,7 @@ const App: React.FC = () => {
 							<Library />
 							<div className='music-player'>
 								<Song />
+
 								<Player />
 							</div>
 							<ThemeModal />
