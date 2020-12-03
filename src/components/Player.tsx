@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { FiPlay, FiSkipBack, FiSkipForward, FiPause, FiRepeat, FiShuffle, FiVolume2, FiVolumeX } from 'react-icons/fi';
-import { useHotkeys } from 'react-hotkeys-hook';
 import Slider from 'react-input-slider';
 import { usePalette } from 'react-palette';
 import { PlayingContext } from '../contexts/PlayingContext';
