@@ -34,12 +34,7 @@ const Navbar = () => {
 					<span>Library</span> <FiMusic />
 				</button>
 				<GoKeyboard className={'hot-key'} size={'2em'} onClick={() => setOpen(!open)} />
-				<Modal
-					classNames={{ modal: 'navModal' }}
-					open={open}
-					onClose={onCloseModal}
-					center
-					closeIcon={<span></span>}>
+				<Modal classNames={{ modal: 'navModal' }} open={open} onClose={onCloseModal} center>
 					<table>
 						<thead>
 							<tr>
